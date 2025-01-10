@@ -22,6 +22,14 @@ jobs:
         sudo apt update
         sudo apt install -y wget gzip
 
+    - name: Download mihomo
+      run: |
+        # 下载并解压mihomo
+        wget https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-alpha-c7661d7.gz
+        gunzip mihomo-linux-amd64-alpha-c7661d7.gz
+        chmod +x mihomo-linux-amd64-alpha-c7661d7
+        sudo mv mihomo-linux-amd64-alpha-c7661d7 /usr/local/bin/mihomo
+
     - name: Download AWAvenue Ads Rule YAML
       run: |
         # 下载原始yaml文件
