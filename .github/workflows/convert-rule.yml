@@ -42,8 +42,9 @@ jobs:
 
     - name: Commit and push the MRS file back to the repository
       run: |
+        # 提交并将MRS文件上传回GitHub
         git config --global user.name "Hidarihitomi"
         git config --global user.email "f2394032100@gmail.com"
-        git add .  # 添加所有更改的文件，包括未追踪的文件
+        git add AWAvenue-Ads-Rule-Clash.mrs
         git commit -m "Add converted MRS file"
         git push
