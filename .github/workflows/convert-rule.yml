@@ -1,0 +1,50 @@
+name: Convert AWAvenue Ads Rule to MRS Format
+
+on:
+  push:
+    paths:
+      - 'Filters/AWAvenue-Ads-Rule-Clash.yaml'  # 当该文件发生变化时触发
+  workflow_dispatch:  # 也可以手动触发工作流
+  schedule:
+    - cron: '0 0 * * *'  # 每天00:00 UTC触发工作流
+
+jobs:
+  convert-rule:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up dependencies
+      run: |
+        # 更新系统和安装必要的软件
+        sudo apt update
+        sudo apt install -y wget gzip
+
+    - name: Download mihomo
+      run: |
+        # 下载并解压mihomo
+        wget https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-alpha-c7661d7.gz
+        gunzip mihomo-linux-amd64-alpha-c7661d7.gz
+        chmod +x mihomo-linux-amd64-alpha-c7661d7
+        sudo mv mihomo-linux-amd64-alpha-c7661d7 /usr/local/bin/mihomo
+
+    - name: Download AWAvenue Ads Rule YAML
+      run: |
+        # 下载原始yaml文件
+        wget https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/refs/heads/main/Filters/AWAvenue-Ads-Rule-Clash.yaml -O AWAvenue-Ads-Rule-Clash.yaml
+
+    - name: Convert YAML to MRS format
+      run: |
+        # 使用mihomo工具将YAML转换为MRS格式
+        mihomo convert-ruleset domain yaml AWAvenue-Ads-Rule-Clash.yaml AWAvenue-Ads-Rule-Clash.mrs
+
+    - name: Commit and push the MRS file back to the repository
+      run: |
+        # 提交并将MRS文件上传回GitHub
+        git config --global user.name "Hidarihitomi"
+        git config --global user.email "f2394032100@gmail.com"
+        git add AWAvenue-Ads-Rule-Clash.mrs
+        git commit -m "Add converted MRS file"
+        git push
