@@ -25,10 +25,10 @@ jobs:
     - name: Download mihomo
       run: |
         # 下载并解压mihomo
-        wget https://github.com/MetaCubeX/mihomo/releases/download/Prerelease-Alpha/mihomo-linux-amd64-alpha-c7661d7.gz
-        gunzip mihomo-linux-amd64-alpha-c7661d7.gz
-        chmod +x mihomo-linux-amd64-alpha-c7661d7
-        sudo mv mihomo-linux-amd64-alpha-c7661d7 /usr/local/bin/mihomo
+        wget https://github.com/MetaCubeX/mihomo/releases/download/v1.18.1/mihomo-linux-amd64-v1.18.1.gz
+        gunzip mihomo-linux-amd64-v1.18.1.gz
+        chmod +x mihomo-linux-amd64-v1.18.1
+        sudo mv mihomo-linux-amd64-v1.18.1 /usr/local/bin/mihomo
 
     - name: Download AWAvenue Ads Rule YAML
       run: |
