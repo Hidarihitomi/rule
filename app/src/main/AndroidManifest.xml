@@ -1,0 +1,23 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:label="COSA Spoofer 24851"
+        android:theme="@android:style/Theme.Material.Light.NoActionBar"
+        android:allowBackup="false"
+        android:supportsRtl="true">
+
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+
+        <meta-data
+            android:name="xposeddescription"
+            android:value="Only spoof getApkAndPkgConfigByPackName headers in com.oplus.cosa, fixed code 24851" />
+
+        <meta-data
+            android:name="xposedminversion"
+            android:value="82" />
+
+    </application>
+
+</manifest>
